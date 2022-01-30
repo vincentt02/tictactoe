@@ -27,15 +27,15 @@ const winningConditions = [
 ];
 
 function botPlays() {
-  let canWin = false;
-  let canDeny = false;
   while (currentPlayer === bot && gameActive) {
-    let avaliableChoices = [];
+    let availableChoices = [];
     for (let i = 0; i < gameState.length; i++) {
       if (gameState[i] !== "X" && gameState[i] !== "O") {
-        avaliableChoices.push(i);
+        availableChoices.push(i);
       }
     }
+    let canWin = false;
+    let canDeny = false;
     let winChoice;
     let denyChoice;
     for (let i = 0; i <= 7; i++) {
@@ -48,24 +48,21 @@ function botPlays() {
         winChoice = winCondition[2];
         canWin = true;
 
-        console.log(winCondition);
-        console.log(`winning choice avaliable picked ${choice}`);
+        console.log(`can pick winning choice`);
 
         break;
       } else if (b === bot && c === bot && a !== human) {
         winChoice = winCondition[0];
         canWin = true;
 
-        console.log(winCondition);
-        console.log(`winning choice avaliable picked ${choice}`);
+        console.log(`can pick winning choice`);
 
         break;
       } else if (a === bot && c === bot && b !== human) {
         winChoice = winCondition[1];
         canWin = true;
 
-        console.log(winCondition);
-        console.log(`winning choice avaliable picked ${choice}`);
+        console.log(`can pick winning choice`);
 
         break;
       }
@@ -74,38 +71,40 @@ function botPlays() {
           denyChoice = winCondition[2];
           canDeny = true;
 
-          console.log(denyChoice);
-          console.log(`deny choice avaliable picked ${choice}`);
+          console.log(`can deny the player`);
+
           break;
         } else if (b === human && c === human && a !== bot) {
           denyChoice = winCondition[0];
           canDeny = true;
 
-          console.log(denyChoice);
-          console.log(`deny choice avaliable picked ${choice}`);
+          console.log(`can deny the player`);
+
           break;
         } else if (a === human && c === human && b !== bot) {
           denyChoice = winCondition[1];
           canDeny = true;
 
-          console.log(denyChoice);
-          console.log(`deny choice avaliable picked ${choice}`);
+          console.log(`can deny the player`);
+
           break;
         }
       }
-
-      //console.log("no winning choice");
     }
 
     if (canWin) {
+      console.log(`picked the winning choice`);
       document.querySelector(`[data-cell-index="${winChoice}"`).click();
     } else if (canDeny) {
+      console.log(`denied the player from winning`);
       document.querySelector(`[data-cell-index="${denyChoice}"`).click();
     } else {
       choice =
-        avaliableChoices[Math.floor(Math.random() * avaliableChoices.length)];
-      console.log(avaliableChoices);
-      console.log(choice);
+        availableChoices[Math.floor(Math.random() * availableChoices.length)];
+
+      console.log(`available choices: ${availableChoices}`);
+      console.log(`picked ${choice}`);
+
       document.querySelector(`[data-cell-index="${choice}"`).click();
     }
   }
