@@ -1,3 +1,3 @@
 todo <br/>
-add side picker
+add side picker <br/>
 alternate sides every round
