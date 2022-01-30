@@ -68,27 +68,30 @@ function botPlays() {
         console.log(`winning choice avaliable picked ${choice}`);
 
         break;
-      } else if (a === human && b === human && c !== bot) {
-        denyChoice = winCondition[2];
-        canDeny = true;
+      }
+      if (!canWin) {
+        if (a === human && b === human && c !== bot) {
+          denyChoice = winCondition[2];
+          canDeny = true;
 
-        console.log(denyChoice);
-        console.log(`deny choice avaliable picked ${choice}`);
-        break;
-      } else if (b === human && c === human && a !== bot) {
-        denyChoice = winCondition[0];
-        canDeny = true;
+          console.log(denyChoice);
+          console.log(`deny choice avaliable picked ${choice}`);
+          break;
+        } else if (b === human && c === human && a !== bot) {
+          denyChoice = winCondition[0];
+          canDeny = true;
 
-        console.log(denyChoice);
-        console.log(`deny choice avaliable picked ${choice}`);
-        break;
-      } else if (a === human && c === human && b !== bot) {
-        denyChoice = winCondition[1];
-        canDeny = true;
+          console.log(denyChoice);
+          console.log(`deny choice avaliable picked ${choice}`);
+          break;
+        } else if (a === human && c === human && b !== bot) {
+          denyChoice = winCondition[1];
+          canDeny = true;
 
-        console.log(denyChoice);
-        console.log(`deny choice avaliable picked ${choice}`);
-        break;
+          console.log(denyChoice);
+          console.log(`deny choice avaliable picked ${choice}`);
+          break;
+        }
       }
 
       //console.log("no winning choice");
