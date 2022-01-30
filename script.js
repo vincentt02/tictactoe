@@ -66,47 +66,59 @@ function botPlays() {
 
         break;
       }
-      if (!canWin) {
-        if (a === human && b === human && c !== bot) {
-          denyChoice = winCondition[2];
-          canDeny = true;
-
-          console.log(`can deny the player`);
-
-          break;
-        } else if (b === human && c === human && a !== bot) {
-          denyChoice = winCondition[0];
-          canDeny = true;
-
-          console.log(`can deny the player`);
-
-          break;
-        } else if (a === human && c === human && b !== bot) {
-          denyChoice = winCondition[1];
-          canDeny = true;
-
-          console.log(`can deny the player`);
-
-          break;
-        }
-      }
     }
 
     if (canWin) {
       console.log(`picked the winning choice`);
       document.querySelector(`[data-cell-index="${winChoice}"`).click();
-    } else if (canDeny) {
+      break;
+    }
+
+    for (let i = 0; i <= 7; i++) {
+      const winCondition = winningConditions[i];
+      let a = gameState[winCondition[0]];
+      let b = gameState[winCondition[1]];
+      let c = gameState[winCondition[2]];
+
+      if (a === human && b === human && c !== bot) {
+        denyChoice = winCondition[2];
+        canDeny = true;
+
+        console.log(`can deny the player`);
+
+        break;
+      } else if (b === human && c === human && a !== bot) {
+        denyChoice = winCondition[0];
+        canDeny = true;
+
+        console.log(`can deny the player`);
+
+        break;
+      } else if (a === human && c === human && b !== bot) {
+        denyChoice = winCondition[1];
+        canDeny = true;
+
+        console.log(`can deny the player`);
+
+        break;
+      }
+    }
+
+    if (canDeny) {
       console.log(`denied the player from winning`);
       document.querySelector(`[data-cell-index="${denyChoice}"`).click();
-    } else {
-      choice =
-        availableChoices[Math.floor(Math.random() * availableChoices.length)];
-
-      console.log(`available choices: ${availableChoices}`);
-      console.log(`picked ${choice}`);
-
-      document.querySelector(`[data-cell-index="${choice}"`).click();
+      break;
     }
+
+    
+
+    choice =
+      availableChoices[Math.floor(Math.random() * availableChoices.length)];
+
+    console.log(`available choices: ${availableChoices}`);
+    console.log(`picked ${choice}`);
+
+    document.querySelector(`[data-cell-index="${choice}"`).click();
   }
 }
 
